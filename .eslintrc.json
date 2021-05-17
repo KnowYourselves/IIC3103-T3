@@ -1,0 +1,38 @@
+{
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "airbnb",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": ["react", "simple-import-sort"],
+    "rules": {
+      "react/prop-types": "off",
+      "react/display-name": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension": "off",
+      "react/jsx-props-no-spreading": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    }
+  }
