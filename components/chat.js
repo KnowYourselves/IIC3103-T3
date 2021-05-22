@@ -56,13 +56,13 @@ const Chat = ({ messages, socket, messageRef }) => {
         {
           messages.map((item) => (
             <div
-              className="grid grid-cols-3 gap-y-2"
+              className="grid grid-cols-5 gap-y-2"
               key={`${item.name}-${item.date}`}
             >
-              <p className="col-span-2">{item.name}</p>
-              <p className="break-words">{(new Date(item.date)).toTimeString().slice(0, 8)}</p>
-              <p className="col-span-3 break-words">{item.message}</p>
-              <hr className="col-span-3" />
+              <p className="col-span-3">{item.name}</p>
+              <p className="col-span-2 break-words">{(new Date(item.date)).toUTCString().slice(0, 25)}</p>
+              <p className="col-span-5 break-words">{item.message}</p>
+              <hr className="col-span-5" />
             </div>
           ))
         }
