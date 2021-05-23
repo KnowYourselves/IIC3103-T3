@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const Chat = ({ messages, socket, messageRef }) => {
+const Chat = ({ messages, socket }) => {
   const [name, setName] = useState('');
   const [input, setInput] = useState('');
   const [message, setMessage] = useState('');
+  const messageRef = useRef();
 
   const handleMessageSend = () => {
     setMessage('');
@@ -26,6 +27,14 @@ const Chat = ({ messages, socket, messageRef }) => {
   useEffect(() => {
     setInput('');
   }, [name]);
+
+  useEffect(() => {
+    messageRef?.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+  }, [messages]);
 
   return (
     <div

@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 
 import Chat from '../components/chat';
@@ -30,7 +30,6 @@ export default function Home() {
   const [flights, setFlights] = useState([]);
   const [messages, setMessages] = useState([]);
   const [chatSocket, setChatSocket] = useState(null);
-  const messageRef = useRef();
 
   useEffect(() => {
     const socket = socketIOClient(ENDPOINT, { path: '/flights' });
@@ -41,16 +40,6 @@ export default function Home() {
     socket.emit('FLIGHTS');
     return () => socket.close();
   }, []);
-
-  useEffect(() => {
-    if (messageRef.current) {
-      messageRef.current.scrollIntoView(
-        {
-          behavior: 'smooth',
-        },
-      );
-    }
-  }, [messages]);
 
   return (
     <div>
@@ -63,7 +52,7 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-center mb-4 space-x-32">
         <DynamicMap flights={flights} />
-        <Chat messages={messages} socket={chatSocket} messageRef={messageRef} />
+        <Chat messages={messages} socket={chatSocket} />
       </div>
       <div className="flex justify-center w-full">
         <Flights flights={flights} />
